@@ -8,6 +8,7 @@ namespace RealEstate.Controllers
 {
     // Student ID: 00013836
     [Route("api/[controller]/[action]")]
+    [ApiController]
     public class LocationController : ControllerBase
     {
         // Constructor
