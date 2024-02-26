@@ -6,13 +6,25 @@ using RealEstate.Repositories.Interface;
 using RealEstate.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-var _connStr = "SqlServer_Connection";
+var _connStr = "SqlConnection";
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Initializing RealEstate_DbContext
+try
+{
+    builder.Services.AddDbContext<RealEstate_DbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString(_connStr)));
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error configuring DbContext: {ex.Message}");
+    throw; // Ensure the exception is propagated
+}
 
 // ===========================================================
 // Initializing Repositories
@@ -27,17 +39,7 @@ builder.Services.AddScoped<IRepository<Vendor>, Vendor_Repository>();
 
 var app = builder.Build();
 
-// Initializing RealEstate_DbContext
-try
-{
-    builder.Services.AddDbContext<RealEstate_DbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString(_connStr)));
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Error configuring DbContext: {ex.Message}");
-    throw; // Ensure the exception is propagated
-}
+
 
 
 // Configure the HTTP request pipeline.
