@@ -1,6 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Data;
+using RealEstate.Models;
+using RealEstate.Repositories.Interface;
+using RealEstate.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 var _connStr = "SqlServer_Connection";
@@ -10,6 +13,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// ===========================================================
+// Initializing Repositories
+// ===========================================================
+
+builder.Services.AddScoped<IRepository<Apartment>, Apartment_Repository>();
+builder.Services.AddScoped<IRepository<Location>, Location_Repository>();
+builder.Services.AddScoped<IRepository<Vendor>, Vendor_Repository>();
+
+// ===========================================================
+
 
 var app = builder.Build();
 
