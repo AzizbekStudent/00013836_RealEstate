@@ -39,9 +39,9 @@ namespace RealEstate.Repositories
         public async Task<IEnumerable<Apartment>> GetAllAsync()
         {
             return await _dbContext.Apartments
-                .Include(a => a.Location_)
-                .Include(a => a.Vendor_)
-                .ToArrayAsync();
+                            .Include(a => a.Location_)
+                            .Include(a => a.Vendor_)
+                            .ToArrayAsync();
         }
 
         // Get By ID

@@ -28,15 +28,15 @@ namespace RealEstate.Models
         public bool? IsForRent { get; set; } = false;
 
         // Foreign key for address entity
-        public int? LocationId { get; set; }
+        public int? Location_Id { get; set; }
 
-        [ForeignKey("LocationId")]
+        [ForeignKey("Location_Id")]
         public Location? Location_ { get; set; }
 
         // Foreign key for category entity
-        public int? VendorId { get; set; }
+        public int? Vendor_Id { get; set; }
 
-        [ForeignKey("CategoryId")]
+        [ForeignKey("Vendor_Id")]
         public Vendor? Vendor_ { get; set; }
     }
 }

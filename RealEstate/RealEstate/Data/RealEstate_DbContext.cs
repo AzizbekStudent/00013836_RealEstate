@@ -26,14 +26,14 @@ namespace RealEstate.Data
             modelBuilder.Entity<Apartment>()
                 .HasOne(address => address.Location_)
                 .WithMany()
-                .HasForeignKey(address => address.LocationId);
+                .HasForeignKey(address => address.Location_Id);
 
             // one to many
             // one vendor might sell several apartments
             modelBuilder.Entity<Apartment>()
                 .HasOne(category => category.Vendor_)
                 .WithMany()
-                .HasForeignKey(category => category.VendorId);
+                .HasForeignKey(category => category.Vendor_Id);
         }
     }
 }

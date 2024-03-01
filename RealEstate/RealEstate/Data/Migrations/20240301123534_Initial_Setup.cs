@@ -52,34 +52,33 @@ namespace RealEstate.Data.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     CompletionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsForRent = table.Column<bool>(type: "bit", nullable: false),
-                    LocationId = table.Column<int>(type: "int", nullable: true),
-                    VendorId = table.Column<int>(type: "int", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true)
+                    Location_Id = table.Column<int>(type: "int", nullable: true),
+                    Vendor_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Apartments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Apartments_Locations_LocationId",
-                        column: x => x.LocationId,
+                        name: "FK_Apartments_Locations_Location_Id",
+                        column: x => x.Location_Id,
                         principalTable: "Locations",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Apartments_Vendors_VendorId",
-                        column: x => x.VendorId,
+                        name: "FK_Apartments_Vendors_Vendor_Id",
+                        column: x => x.Vendor_Id,
                         principalTable: "Vendors",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Apartments_LocationId",
+                name: "IX_Apartments_Location_Id",
                 table: "Apartments",
-                column: "LocationId");
+                column: "Location_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Apartments_VendorId",
+                name: "IX_Apartments_Vendor_Id",
                 table: "Apartments",
-                column: "VendorId");
+                column: "Vendor_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

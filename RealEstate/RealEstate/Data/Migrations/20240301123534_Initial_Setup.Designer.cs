@@ -12,7 +12,7 @@ using RealEstate.Data;
 namespace RealEstate.Data.Migrations
 {
     [DbContext(typeof(RealEstate_DbContext))]
-    [Migration("20240226055103_Initial_Setup")]
+    [Migration("20240301123534_Initial_Setup")]
     partial class Initial_Setup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,9 +36,6 @@ namespace RealEstate.Data.Migrations
                         .IsRequired()
                         .HasColumnType("float");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("CompletionDate")
                         .IsRequired()
                         .HasColumnType("datetime2");
@@ -55,21 +52,21 @@ namespace RealEstate.Data.Migrations
                         .IsRequired()
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LocationId")
+                    b.Property<int?>("Location_Id")
                         .HasColumnType("int");
 
                     b.Property<double?>("Price")
                         .IsRequired()
                         .HasColumnType("float");
 
-                    b.Property<int?>("VendorId")
+                    b.Property<int?>("Vendor_Id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
+                    b.HasIndex("Location_Id");
 
-                    b.HasIndex("VendorId");
+                    b.HasIndex("Vendor_Id");
 
                     b.ToTable("Apartments");
                 });
@@ -132,11 +129,11 @@ namespace RealEstate.Data.Migrations
                 {
                     b.HasOne("RealEstate.Models.Location", "Location_")
                         .WithMany()
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("Location_Id");
 
                     b.HasOne("RealEstate.Models.Vendor", "Vendor_")
                         .WithMany()
-                        .HasForeignKey("VendorId");
+                        .HasForeignKey("Vendor_Id");
 
                     b.Navigation("Location_");
 
